@@ -1,0 +1,70 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: 123456
+    url: jdbc:mysql://139.129.230.113:3306/vrs?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT1FROMDUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    filters: stat,wall
+    logSlowSql: true
+  rabbitmq:
+    username: guest
+    password: guest
+    host: 127.0.0.1
+    publisher-returns: false
+    #publisher-confirms: true
+    publisher-confirm-type: correlated
+    virtual-host: 139.129.230.113
+    listener:
+      simple:
+        acknowledge-mode: manual
+        prefetch: 100
+  redis:
+    host: 139.129.230.113
+    database: 0
+    port: 6379
+    password: 123
+  cache:
+    cache-names: menus_cache
+  artemis:
+    port:
+  mail:
+    host: smtp.126.com
+    protocol: smtp
+    default-encoding: UTF-8
+    username:
+    password:
+    port: 587
+    properties:
+      mail:
+        stmp:
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+          debug: true
+server:
+  port: 8080
+  compression:
+    enabled: true
+  address:
+fastdfs:
+  nginx:
+    host: http://139.129.230.113/
+#mybatis配置
+mybatis:
+  #实体类所在包名
+  type-aliases-package: cn.com.vrs.pojo
+#通用mapper配置
+mapper:
+  #公用接口类路径
+  mappers: cn.com.vrs.dao
+  identity: MYSQL
